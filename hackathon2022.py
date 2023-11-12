@@ -22,7 +22,7 @@ def convertBGR2GS(source_img):
     return img_gs
 
 ### CITIRE IMAGINE SI PRELUCRARE ###
-imagine = cv2.imread('1.png')
+imagine = cv2.imread('source.png')
 dimensiuni = imagine.shape
 imagineCOPY = imagine.copy()
 imagineGS = cv2.cvtColor(imagineCOPY, cv2.COLOR_BGR2GRAY)
