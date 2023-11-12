@@ -20,6 +20,7 @@ np.set_printoptions(threshold=sys.maxsize, linewidth=9999)
 def convertBGR2GS(source_img):
     img_gs = cv2.cvtColor(source_img, cv2.COLOR_BGR2GRAY)
     return img_gs
+#UTILITATE CONVERT BGR LA GRAYSCALE
 
 ### CITIRE IMAGINE SI PRELUCRARE ###
 imagine = cv2.imread('source.png')
@@ -30,10 +31,6 @@ imagineGSBlur = cv2.GaussianBlur(imagineGS, (7, 7), 0)
 (T, thresholded) = cv2.threshold(imagineGSBlur, 230, 255,cv2.THRESH_BINARY_INV)
 thresholdedv2 = thresholded.copy()
 ### CITIRE IMAGINE SI PRELUCRARE ###
-
-### DEBUG ###
-
-### DEBUG ###
 
 ### CULOARE BG ###
 bg = imagineCOPY
