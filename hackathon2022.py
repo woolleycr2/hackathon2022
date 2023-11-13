@@ -1,6 +1,5 @@
 import math
 import sys
-
 import cv2
 import cvzone
 import numpy as np
@@ -16,11 +15,11 @@ if len(sys.argv) > 2:
 
 np.set_printoptions(threshold=sys.maxsize, linewidth=9999)
 
-#UTILITATE CONVERT BGR LA GRAYSCALE
+### UTILITATE CONVERT BGR LA GRAYSCALE ###
 def convertBGR2GS(source_img):
     img_gs = cv2.cvtColor(source_img, cv2.COLOR_BGR2GRAY)
     return img_gs
-#UTILITATE CONVERT BGR LA GRAYSCALE
+### UTILITATE CONVERT BGR LA GRAYSCALE ###
 
 ### CITIRE IMAGINE SI PRELUCRARE ###
 imagine = cv2.imread('source.png')
@@ -46,9 +45,9 @@ bgbgr=np.argmax(countsb),np.argmax(countsg),np.argmax(countsr)
 
 contours, hierarchy = cv2.findContours(thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
-#PRELUCRARE MASCA THRESHHOLD#
+### PRELUCRARE MASCA THRESHOLD ###
 cv2.fillPoly(thresholdedv2, pts=contours, color=255)
-#PRELUCRARE MASCA THRESHHOLD#
+### PRELUCRARE MASCA THRESHOLD ###
 
 ariiSortate = sorted(contours, key=cv2.contourArea,reverse=True)
 perimetreSortate = sorted(contours, key=lambda c:cv2.arcLength(c, False))
@@ -80,13 +79,15 @@ for i in range(numarObiecte):
     nr += 1
 
 
-# VECTOR OBIECTE CROP @ GRAYSCALE
+### VECTOR OBIECTE CROP @ GRAYSCALE ###
 ROIGS = []
 
 for i in range(len(ROI)):
     ROIGS.append(convertBGR2GS(ROI[i]))
 
-# VECTOR LUMINOZITATE OBIECTE
+### VECTOR OBIECTE CROP @ GRAYSCALE ###
+
+### VECTOR LUMINOZITATE OBIECTE ###
 ROIBR = []
 ROIBRMAX = []
 ROIBRMIN = []
@@ -106,18 +107,20 @@ for k in range(len(ROI)):
     if min_br is None or brightness < min_br: 
         min_br = brightness
         ROIBRMIN = ROI[k]
+### VECTOR LUMINOZITATE OBIECTE ###
 
-# CANVAS TASK 3 #
+### CANVAS TASK 3 ###
 task3 = np.zeros((dimensiuni[0],dimensiuni[1], 3), np.uint8)
 task3[:]=bgbgr
-# CANVAS TASK 3 #
+### CANVAS TASK 3 ###
 
-# AFISARE TASK 3 #
+### AFISARE TASK 3 ###
 for i in range(len(ROI)):
     x,y,w,h = cv2.boundingRect(contours[i])
     if(ROIBRMAX is ROI[i] or ROIBRMIN is ROI[i]):
         task3 = cvzone.overlayPNG(task3, ROI[i],[x,y])
     nr += 1
+### AFISARE TASK 3 ###
 
 # cv2.imshow("ROI", ROIMASK[11])
 
