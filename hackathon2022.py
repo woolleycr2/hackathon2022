@@ -74,7 +74,7 @@ for i in range(numarObiecte):
     ROI.append(ROIPNG)
     
     
-    cv2.imwrite("ROI_{}.png".format(nr), ROI[i]) # FIXME REMOVE / only for debugging
+    cv2.imwrite("ROI_{}.png".format(nr), ROI[i])
     if((ariiSortate[0] is contours[i]) or (perimetreSortate[0] is contours[i])):
         task2 = cvzone.overlayPNG(task2, ROI[i],[x,y])
     nr += 1
@@ -148,7 +148,7 @@ def get_h_masks(source_roimask):
     if width % 2 == 0:
         return (source_roimask[0:height, 0: (int(width / 2) - 1)], cv2.flip(source_roimask[0:height, (int(width / 2) + 0): (width - 1)], 1) ) 
     else:
-        return (source_roimask[0:height, 0: (int(width / 2) - 1)], cv2.flip(source_roimask[0:height, (int(width / 2) + 1): (width - 1)], 1) ) # STUB  returns tuple
+        return (source_roimask[0:height, 0: (int(width / 2) - 1)], cv2.flip(source_roimask[0:height, (int(width / 2) + 1): (width - 1)], 1) )
 
 
 def compare_h_masks(h_mask_a, h_mask_b):
@@ -163,7 +163,7 @@ def compare_h_masks(h_mask_a, h_mask_b):
     return (pixel_count, pixel_delta)
 
 def calculate_theta(count, delta):
-    return (count/100)*delta # NOTE deprecat
+    return (count/100)*delta
 
 def calculate_theta2(count, delta):
     return (delta*100)/count
